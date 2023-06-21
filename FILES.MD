@@ -2,9 +2,9 @@ Working directories
 
 Research storage, location and cd
 ```
-/rsstu/users/l/lllowe/LakeErie/
-le
-``
+cd /rsstu/users/l/lllowe/LakeErie/
+le #alias to cd
+```
 
 Limnotech's model
 ```
