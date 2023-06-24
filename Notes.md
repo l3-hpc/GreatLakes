@@ -17,7 +17,10 @@ XLSX files from Wilson
 
 ```
 
-
+Remove write permissions from these original files
+```
+chmod u-w -R ~/LakeErie/FVCOM
+```
 
 ncks
 ```
