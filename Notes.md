@@ -30,7 +30,25 @@ chmod -R u-w ~/LakeErie/xlsx
 
 ncks
 ```
-ncks -d time,1416,8782 2013_leem_fine_forcing.nc forcing_1417_8783.nc
-ncks -d time,59,365 2013_leem_fine_julian_obc.nc obc_60_366.nc
-ncks -d time,59,365 2013_leem_fine_river_data.nc river_60_366.nc
+ncks -d time,1416,8782 2013_leem_fine_forcing.nc 2013_leem_fine_forcing.nc
+ncks -d time,59,365 2013_leem_fine_julian_obc.nc 2013_leem_fine_julian_obc.nc
+ncks -d time,59,365 2013_leem_fine_river_data.nc 2013_leem_fine_river_data.nc
 ```
+
+ncap2
+```
+ncap2 -s 'TP*=0.0' 2013_leem_fine_river_data.nc 2013_leem_fine_river_data2.nc
+```
+and
+```
+cp Baseline_2013_0001.nc TPtot.nc
+ncap2 -s"ZOO1=ZOO1/50.;ZOO2=ZOO2/50.;ZOO3=ZOO3/50.;" -v Baseline_2013_0001.nc TPtot.nc
+a
+ncap2 -s"TP=RPOP+LPOP+RDOP+LDOP+PO4T+LPIP+RPIP+ZOO1+ZOO2+ZOO3" -v TPtot.nc TPtot.nc
+a
+ncks -x -v CHL,PHYT1,PHYT2,PHYT3,PHYT4,PHYT5,RPOP,LPOP,RDOP,LDOP,PO4T,RPON,LPON,RDON,LDON,NH4T,NO23,BSI,SIT,RPOC,LPOC,RDOC,LDOC,EXDOC,REPOC,REDOC,O2EQ,DO,ZOO1,ZOO2,ZOO3,BALG,DYE,LPIP,RPIP,IPOP,IPON,IPOC,Hyp2_Area TPtot.nc TP2tot.nc
+mv TP2tot.nc TPtot.nc
+```
+
+
+
