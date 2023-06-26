@@ -56,5 +56,15 @@ ncks -x -v CHL,PHYT1,PHYT2,PHYT3,PHYT4,PHYT5,RPOP,LPOP,RDOP,LDOP,PO4T,RPON,LPON,
 mv TP2tot.nc TPtot.nc
 ```
 
+To get Zero TP riverloads
+```
+ncap2 -s"TP=river_temp" -v 2013_leem_fine_river_data.nc 2013_leem_fine_river_data.nc
+ncap2 -s"TP=0.0" 2013_leem_fine_river_data.nc 2013_leem_fine_river_data.nc
+ncatted -O -a long_name,TP,o,c,TP 2013_leem_fine_river_data.nc
+ncatted -O -a Name,TP,o,c,TP 2013_leem_fine_river_data.nc
+ncatted -O -a units,TP,o,c,mg/L 2013_leem_fine_river_data.nc
+
+```
+
 
 
