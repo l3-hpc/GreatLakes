@@ -37,7 +37,7 @@ cp *.nc orig
 mkdir crop
 ncks -d time,1416,7303 2013_leem_fine_forcing.nc crop/2013_leem_fine_forcing.nc
 ncks -d time,59,303 2013_leem_fine_julian_obc.nc crop/2013_leem_fine_julian_obc.nc
-ncks -d time,59,303 2013_leem_fine_river_data.nc crop/2013_leem_fine_river.nc
+ncks -d time,59,303 2013_leem_fine_river_data.nc crop/2013_leem_fine_river_data.nc
 cp crop/* .
 ```
 
