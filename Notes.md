@@ -63,7 +63,13 @@ ncap2 -s"TP=0.0" 2013_leem_fine_river_data.nc 2013_leem_fine_river_data.nc
 ncatted -O -a long_name,TP,o,c,TP 2013_leem_fine_river_data.nc
 ncatted -O -a Name,TP,o,c,TP 2013_leem_fine_river_data.nc
 ncatted -O -a units,TP,o,c,mg/L 2013_leem_fine_river_data.nc
+```
 
+Make a restart file.
+
+Run until March 1st.  I put all restart in 1 file by mistake, so cut a slice.
+```
+ncks -d time,59,59 leem_restart_0001.nc leem_march1.nc
 ```
 
 
