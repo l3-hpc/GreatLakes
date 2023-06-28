@@ -1,9 +1,9 @@
-Run FVCOM until March 1st, have a restart dump with metadata from that date:
+Run FVCOM (with the bio model on) until March 1st, get a restart dump with metadata from that date:
 ```
 /expanse/lustre/projects/ncs124/llowe/HYDRO/run/restart/leem_restart_0001.nc
 ```
 
-Run FVCOM one timestep, have a restart dump on that first timestep.  This is to get the TP initial conditions from the DETRITUS file into netCDF format.
+Run FVCOM one timestep, have a restart dump at the same time as the run start.  This is to get the TP initial conditions from the DETRITUS file into netCDF format.
 ```
 /expanse/lustre/projects/ncs124/llowe/HYDRO/run/output/leem_restart_0001.nc
 ```
