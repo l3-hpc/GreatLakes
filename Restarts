@@ -1,0 +1,7 @@
+Run FVCOM until March 1st, have a restart dump with metadata from that date
+
+Run FVCOM one timestep, have a restart dump
+
+Replace TP values in March 1st with that of first timestep
+
+ncks -A -v TP leem_restart_init.nc leem_restart_march1.nc
