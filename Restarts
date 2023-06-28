@@ -17,6 +17,19 @@ cp /expanse/lustre/projects/ncs124/llowe/HYDRO/run/restart/leem_restart_0001.nc 
 cp /expanse/lustre/projects/ncs124/llowe/HYDRO/run/output/leem_restart_0001.nc ./leem_restart_jan1.nc
 ```
 
-Replace TP values in March 1st with that of first timestep
+Replace TP values in March 1st with that of first timestep.  First, make a copy of the one to write to.
+```
+cp leem_restart_march1.nc restart_tp.nc
+```
 
-ncks -A -v TP leem_restart_init.nc leem_restart_march1.nc
+This replaces the TP values from March 1st with those of January first (the initial conditions).
+```
+ncks -A -v TP leem_restart_jan1.nc restart_tp.nc
+```
+
+Copy it to the input directory for the runs
+```
+cp restart_tp.nc /expanse/lustre/projects/ncs124/llowe/FVCOM/simulations/input/
+```
+
+Save a copy locally and look at it in VisIt to check things.  Check both TP and temperature.
