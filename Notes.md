@@ -72,5 +72,11 @@ Run until March 1st.  I put all restart in 1 file by mistake, so cut a slice.
 ncks -d time,59,59 leem_restart_0001.nc leem_march1.nc
 ```
 
+Get daily values from hourly output
+```
+cd /expanse/lustre/projects/ncs124/llowe/FVCOM/simulations/2013/OUT/ws1p0em6calc
+ncks -d time,0,5832,24 leem_0001.nc leem_hourly.nc
+```
+
 
 
