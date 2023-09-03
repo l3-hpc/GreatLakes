@@ -41,4 +41,18 @@ mv output output_nosinkout
 Check the files with VisIt
 - Well.  Sink out has less TP so I guess we're good.
 
+## Full test runs
+March 1 - October 31
+
+Sink out
+```
+1           !Number of Detritus vars
+"TP" "mg/L" !Name and units
+0.00        !Minimum value for Detritus
+6.0e-7      !Sinking rate, m/s
+1           !1=sink out, 0=no sink out
+```
+
+
+
 
