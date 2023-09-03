@@ -1,4 +1,5 @@
 On Expanse:
+- login.expanse.sdsc.edu
 ```
 cd /expanse/lustre/projects/ncs124/llowe/FVCOM/source_code
 git clone https://github.com/l3-hpc/BIO_TP.git
@@ -29,3 +30,15 @@ vi submit.sh
 /usr/bin/time -v mpirun -n 256 ./fvcom --casename=leem > leem_sinkout.out
 sbatch submit.sh
 ```
+
+After logging out/in
+```
+cd $WORK
+cd FVCOM/simulations/2013
+mv output output_nosinkout
+```
+
+Check the files with VisIt
+- Well.  Sink out has less TP so I guess we're good.
+
+
