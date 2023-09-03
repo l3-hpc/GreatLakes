@@ -13,3 +13,7 @@ LakeErieTP
       -   full_year
   -   2013
 - scripts
+
+```
+DefineScalarExpression("TP_tot", "RPOP + LPOP + RDOP + LDOP + PO4T + LPIP + RPIP + (ZOO1 + ZOO2 + ZOO3)/50.0")
+```
