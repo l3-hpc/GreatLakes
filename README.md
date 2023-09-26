@@ -20,7 +20,9 @@ Other Links:
 - [visit-scripts](https://github.com/l3-hpc/visit-scripts) - general visit scripts, [including a script](https://github.com/l3-hpc/visit-scripts/blob/main/sample-movie-scripts/README_LE.MD) to make images and movies of every LEEM variable
 - [BIO_TP](https://github.com/l3-hpc/BIO_TP) - the TP bio model for FVCOM
 
-For VisIt, comparing with LEEM:
+Other Notes:
+
+- For VisIt, comparing with LEEM:
 ```
 DefineScalarExpression("TP_tot", "RPOP + LPOP + RDOP + LDOP + PO4T + LPIP + RPIP + (ZOO1 + ZOO2 + ZOO3)/50.0")
 ```
