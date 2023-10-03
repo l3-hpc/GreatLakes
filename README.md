@@ -12,7 +12,8 @@ Notes and scripts for Lake Erie TP model.
 
 **scripts**
 - [add-tp-river-loads.R](scripts/add-tp-river-loads.R): R script to add TP loads to river forcing file
-- [ncks_clip_forcing.sh](scripts/ncks_clip_forcing.sh): Shell script to create netCDF with TP derived from LEEM quantities
+- [ncks_clip_forcing.sh](scripts/ncks_clip_forcing.sh): Clip forcing files in order to run FVCOM as 'restart' from March 1
+- [shiny-le](https://github.com/l3-hpc/shiny-le/README.md): Readme has notes to create netCDF with TP derived from LEEM quantities
 
 Other Links:
 - [visit-tp-compare](https://github.com/l3-hpc/visit-tp-compare) - create images and movies from TP model or TP-(as function of LEEM) model
