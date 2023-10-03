@@ -13,13 +13,14 @@ Notes and scripts for Lake Erie TP model.
 **scripts**
 - [add-tp-river-loads.R](scripts/add-tp-river-loads.R): R script to add TP loads to river forcing file
 - [ncks_clip_forcing.sh](scripts/ncks_clip_forcing.sh): Clip forcing files in order to run FVCOM as 'restart' from March 1
-- [shiny-le](https://github.com/l3-hpc/shiny-le/README.md): Readme has notes to create netCDF with TP derived from LEEM quantities
+
 
 Other Links:
 - [visit-tp-compare](https://github.com/l3-hpc/visit-tp-compare) - create images and movies from TP model or TP-(as function of LEEM) model
 - [shiny-le](https://github.com/l3-hpc/shiny-le) - Code for R Shiny app
 - [visit-scripts](https://github.com/l3-hpc/visit-scripts) - general visit scripts, [including a script](https://github.com/l3-hpc/visit-scripts/blob/main/sample-movie-scripts/README_LE.MD) to make images and movies of every LEEM variable
 - [BIO_TP](https://github.com/l3-hpc/BIO_TP) - the TP bio model for FVCOM
+- [shiny-le]([https://github.com/l3-hpc/shiny-le/README.md](https://github.com/l3-hpc/shiny-le/blob/main/README.md)): Readme has notes to create netCDF with TP derived from LEEM quantities
 
 Other Notes:
 
