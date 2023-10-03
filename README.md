@@ -20,7 +20,7 @@ Other Links:
 - [shiny-le](https://github.com/l3-hpc/shiny-le) - Code for R Shiny app
 - [visit-scripts](https://github.com/l3-hpc/visit-scripts) - general visit scripts, [including a script](https://github.com/l3-hpc/visit-scripts/blob/main/sample-movie-scripts/README_LE.MD) to make images and movies of every LEEM variable
 - [BIO_TP](https://github.com/l3-hpc/BIO_TP) - the TP bio model for FVCOM
-- [shiny-le]([https://github.com/l3-hpc/shiny-le/README.md](https://github.com/l3-hpc/shiny-le/blob/main/README.md)): Readme has notes to create netCDF with TP derived from LEEM quantities
+- [shiny-le/README.md](https://github.com/l3-hpc/shiny-le/blob/main/README.md): Readme has notes to create netCDF with TP derived from LEEM quantities
 
 Other Notes:
 
