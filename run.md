@@ -1,31 +1,46 @@
-On Atmos:
-- login.atmos1.epa.gov
+# Setting up FVCOM + BIO_TP model on Atmos
+
+## Loading inputs
+- I stole Wilson's Ontario input files as follows
+
+```sh 
+cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/data/MyFiles.inp /work/GLHABS/LakeOntario/ccoffman/data/wilsonFiles.inp
+cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/GD_InputFile_TP /work/GLHABS/LakeOntario/ccoffman/data/wilson_InputFile_TP
 ```
 
-cd /home/ccoffman/setup/FVCOM/source_code
-git clone https://github.com/l3-hpc/BIO_TP.git
-cp BIO_TP/EXTERNAL/mod_bio_3D.F .
-cp BIO_TP/EXTERNAL/run/input/TP.in ../simulations/input/
-```
-- Might need to edit the TP.in file
+## Compiling model
+- Forked instructions from l3-hpc/LakeOntario
 
-
-```
-cd BIO_TP
+Compile the BIO_TP model
+```sh
+cd /work/GLHABS/LakeOntario/ccoffman
+git clone https://github.com/l3-hpc/BIO_TP.git FVCOM-LOEM/src/BIO_TP
+cp FVCOM_LOEM/src/BIO_TP/EXTERNAL/mod_bio_3D.F FVCOM_LOEM/src
+cp FVCOM_LOEM/src/BIO_TP/EXTERNAL/run/input/TP.in ../simulations/input/
+cd FVCOM-LOEM/src/BIO_TP
 make
 ```
-- I'm not able to run this make step
-- I get the following error
+- Might need to edit the TP.in file or merge with Wilson's?
+
+
+Compile the FVCOM libs
+```sh
+cd FVCOM-LOEM/libs
+cp versions/netcdf* .
+make
 ```
-/bin/sh: f77: command not found
-make: *** [makefile:34: mod_1D.o] Error 127
-rm mod_1D.o
-```
+
+
+Edit the FVCOM model
+- edit ‘make.inc’
+  - library environments
+  - control flags
+  - and compiler settings. 
 
 
 
-
-```
+Compile the FVCOM model
+```sh
 cd ..
 make
 mv fvcom ../simulations/2013/
@@ -33,6 +48,7 @@ cd ../simulations/2013
 ```
 
 First run, no sink out:
+- before doing this 
 ```
 0           !1=sink out, 0=no sink out
 sbatch submit.sh
@@ -46,9 +62,9 @@ sbatch submit.sh
 ```
 
 After logging out/in
+- Need to update year
 ```
-cd $WORK
-cd FVCOM/simulations/2013
+cd /work/GLHABS/LakeOntario/ccoffman/FVCOM/simulations/2018? 
 mv output output_nosinkout
 ```
 
@@ -66,7 +82,3 @@ Sink out
 6.0e-7      !Sinking rate, m/s
 1           !1=sink out, 0=no sink out
 ```
-
-
-
-
