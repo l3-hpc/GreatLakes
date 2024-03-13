@@ -1,16 +1,23 @@
 # Setting up FVCOM + BIO_TP model on Atmos
+This goes through:
+- Aquiring everything
+  - FVCOM 4.4.5 (older version for stability reasons)
+  - BIO_TP model
+  - Lake Ontario loadings 
+- Compiling everything
+  - BIO_TP
+  - FV_COM
+    - libs
+    - model
+- A first model run
 
-## Loading inputs
-- I stole Wilson's Ontario input files as follows
-
-```sh 
-cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/data/MyFiles.inp /work/GLHABS/LakeOntario/ccoffman/data/wilsonFiles.inp
-cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/GD_InputFile_TP /work/GLHABS/LakeOntario/ccoffman/data/wilson_InputFile_TP
+## FVCOM
+Git the FVCOM model (we are choosing an older version for stability reasons)
+```sh
+git 
 ```
 
-## Compiling model
-- Forked instructions from l3-hpc/LakeOntario
-
+## BIO_TP
 Compile the BIO_TP model
 ```sh
 cd /work/GLHABS/LakeOntario/ccoffman
@@ -22,22 +29,31 @@ make
 ```
 - Might need to edit the TP.in file or merge with Wilson's?
 
+## Inputs/Loadings
+- I stole Wilson's Ontario input files as follows
 
+```sh 
+cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/data/MyFiles.inp /work/GLHABS/LakeOntario/ccoffman/data/wilsonFiles.inp
+cp /work/GLFBREEZ/Lake_Ontario/Model_Runs/2018/LO_37/GD_InputFile_TP /work/GLHABS/LakeOntario/ccoffman/data/wilson_InputFile_TP
+```
+
+# Compiling models
+- Forked instructions from l3-hpc/LakeOntario
+
+## BIO_TP
+
+## FVCOM
 Compile the FVCOM libs
 ```sh
 cd FVCOM-LOEM/libs
 cp versions/netcdf* .
 make
 ```
-
-
 Edit the FVCOM model
 - edit ‘make.inc’
   - library environments
   - control flags
   - and compiler settings. 
-
-
 
 Compile the FVCOM model
 ```sh
@@ -46,6 +62,10 @@ make
 mv fvcom ../simulations/2013/
 cd ../simulations/2013
 ```
+
+
+# Running the models
+- These are still Lisa's notes and need to be updated
 
 First run, no sink out:
 - before doing this 
