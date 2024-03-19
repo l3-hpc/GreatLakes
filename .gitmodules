@@ -1,0 +1,6 @@
+[submodule "FVCOM-LOEM"]
+	path = FVCOM-LOEM 
+	url = https://github.com/coffm049-2/FVCOM-LOEM
+[submodule "BIO_TP"]
+	path = FVCOM-LOEM/src/BIO_TP
+	url = https://github.com/coffm049-2/BIO_TP
