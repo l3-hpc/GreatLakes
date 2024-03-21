@@ -12,11 +12,11 @@ In the Lake Erie folder
 - [submit.sh](LakeErie/submit.sh) - SLURM batch script for Expanse
 
 **data**
-- [TP_ZOO_Loads.csv](data/TP_ZOO_Loads.csv): Phosphorus loading, including Zooplankton component
+- [TP_ZOO_Loads.csv](LakeErie/data/TP_ZOO_Loads.csv): Phosphorus loading, including Zooplankton component
 
 **scripts**
-- [add-tp-river-loads.R](scripts/add-tp-river-loads.R): R script to add TP loads to river forcing file
-- [ncks_clip_forcing.sh](scripts/ncks_clip_forcing.sh): Clip forcing files in order to run FVCOM as 'restart' from March 1
+- [add-tp-river-loads.R](LakeErie/scripts/add-tp-river-loads.R): R script to add TP loads to river forcing file
+- [ncks_clip_forcing.sh](LakeErie/scripts/ncks_clip_forcing.sh): Clip forcing files in order to run FVCOM as 'restart' from March 1
 
 
 Other Links:
