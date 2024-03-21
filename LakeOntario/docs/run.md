@@ -107,7 +107,7 @@ cp /work/GLHABS/LakeOntario/ccoffman/FVCOM-LOEM/src/fvcom /work/GLHABS/LakeOntar
 - Edit the header information, note the time zone
 - Took settings from Wilson's Lake Michigan /work/GLFBREEZ/Lake_Michigan/FVCOM_4_3_1/Compile_FVCOMv4/mi_run.nml
 - Need to make sure have forcing files for instance forcing.nc
--
+- Need to convert files for proper use with FVCOM
 
 ## From Lisa's
 - These are still Lisa's notes and need to be updated
