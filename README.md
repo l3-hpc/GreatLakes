@@ -1,8 +1,10 @@
-# LakeErie.md
+# README
 
-Notes and scripts for Lake Erie TP model.
+Notes and scripts for the Great Lakes Models
 
 ## Contents
+
+### Lake Erie
 - [Restarts](https://github.com/l3-hpc/LakeErie/blob/main/Restarts.md): How to create a restart file to set the initial conditions(ICs) to match LEEM ICs.
 - [run](run.md) - notes for compiling and running on Expanse at SDSC
 - [submit.sh](submit.sh) - SLURM batch script for Expanse
