@@ -1,0 +1,100 @@
+diff -uNrp metis-5.1.0.orig/GKlib/CMakeLists.txt metis-5.1.0.mod/GKlib/CMakeLists.txt
+--- metis-5.1.0.orig/GKlib/CMakeLists.txt	2013-03-30 11:24:45.000000000 -0500
++++ metis-5.1.0.mod/GKlib/CMakeLists.txt	2023-06-06 23:43:05.492448040 -0500
+@@ -7,7 +7,7 @@ unset(abs)
+ include(GKlibSystem.cmake)
+ 
+ include_directories(".")
+-add_library(GKlib STATIC ${GKlib_sources})
++add_library(GKlib SHARED ${GKlib_sources})
+ if(UNIX)
+   target_link_libraries(GKlib m)
+ endif(UNIX)
+@@ -16,6 +16,6 @@ include_directories("test")
+ add_subdirectory("test")
+ 
+ install(TARGETS GKlib
+-  ARCHIVE DESTINATION lib
+-  LIBRARY DESTINATION lib)
+-install(FILES ${GKlib_includes} DESTINATION include)
++  ARCHIVE DESTINATION lib${LIB_SUFFIX}
++  LIBRARY DESTINATION lib${LIB_SUFFIX})
++install(FILES ${GKlib_includes} DESTINATION include/metis)
+diff -uNrp metis-5.1.0.orig/GKlib/Makefile metis-5.1.0.mod/GKlib/Makefile
+--- metis-5.1.0.orig/GKlib/Makefile	2013-03-30 11:25:05.000000000 -0500
++++ metis-5.1.0.mod/GKlib/Makefile	2023-06-06 23:43:29.364735876 -0500
+@@ -41,10 +41,10 @@ ifneq ($(pcre), not-set)
+     CONFIG_FLAGS += -DPCRE=$(pcre)
+ endif
+ ifneq ($(gkregex), not-set)
+-    CONFIG_FLAGS += -DGKREGEX=$(pcre)
++    CONFIG_FLAGS += -DGKREGEX=$(gkregex)
+ endif
+ ifneq ($(gkrand), not-set)
+-    CONFIG_FLAGS += -DGKRAND=$(pcre)
++    CONFIG_FLAGS += -DGKRAND=$(gkrand)
+ endif
+ ifneq ($(prefix), not-set)
+     CONFIG_FLAGS += -DCMAKE_INSTALL_PREFIX=$(prefix)
+diff -uNrp metis-5.1.0.orig/libmetis/CMakeLists.txt metis-5.1.0.mod/libmetis/CMakeLists.txt
+--- metis-5.1.0.orig/libmetis/CMakeLists.txt	2013-03-30 11:24:45.000000000 -0500
++++ metis-5.1.0.mod/libmetis/CMakeLists.txt	2023-06-06 23:42:38.837126511 -0500
+@@ -4,13 +4,14 @@ include_directories(.)
+ file(GLOB metis_sources *.c)
+ # Build libmetis.
+ add_library(metis ${METIS_LIBRARY_TYPE} ${GKlib_sources} ${metis_sources})
++set_target_properties(metis PROPERTIES SOVERSION 0)
+ if(UNIX)
+   target_link_libraries(metis m)
+ endif()
+ 
+ if(METIS_INSTALL)
+   install(TARGETS metis
+-    LIBRARY DESTINATION lib
+-    RUNTIME DESTINATION lib
+-    ARCHIVE DESTINATION lib)
++    LIBRARY DESTINATION lib${LIB_SUFFIX}
++    RUNTIME DESTINATION lib${LIB_SUFFIX}
++    ARCHIVE DESTINATION lib${LIB_SUFFIX})
+ endif()
+diff -uNrp metis-5.1.0.orig/Makefile metis-5.1.0.mod/Makefile
+--- metis-5.1.0.orig/Makefile	2013-03-30 11:24:45.000000000 -0500
++++ metis-5.1.0.mod/Makefile	2023-06-06 23:43:29.365735888 -0500
+@@ -9,6 +9,11 @@ prefix     = not-set
+ gklib_path = not-set
+ shared     = not-set
+ cc         = not-set
++libsuffix  = not-set
++pcre       = not-set
++gkregex    = not-set
++gkrand     = not-set
++
+ 
+ 
+ # Basically proxies everything to the builddir cmake.
+@@ -23,6 +28,9 @@ CONFIG_FLAGS = -DCMAKE_VERBOSE_MAKEFILE=
+ ifeq ($(gklib_path), not-set)
+     gklib_path = GKlib
+ endif
++ifneq ($(libsuffix), not-set)
++     CONFIG_FLAGS += -DLIB_SUFFIX=$(libsuffix)
++endif
+ CONFIG_FLAGS += -DGKLIB_PATH=$(abspath $(gklib_path))
+ ifneq ($(gdb), not-set)
+     CONFIG_FLAGS += -DGDB=$(gdb)
+@@ -51,6 +59,15 @@ endif
+ ifneq ($(cc), not-set)
+     CONFIG_FLAGS += -DCMAKE_C_COMPILER=$(cc)
+ endif
++ifneq ($(pcre), not-set)
++    CONFIG_FLAGS += -DPCRE=$(pcre)
++endif
++ifneq ($(gkregex), not-set)
++    CONFIG_FLAGS += -DGKREGEX=$(gkregex)
++endif
++ifneq ($(gkrand), not-set)
++    CONFIG_FLAGS += -DGKRAND=$(gkrand)
++endif
+ 
+ VERNUM=5.1.0
+ PKGNAME=metis-$(VERNUM)

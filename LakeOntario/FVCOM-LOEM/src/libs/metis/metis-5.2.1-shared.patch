@@ -1,0 +1,113 @@
+diff -uNrp metis-5.2.1.orig/GKlib/CMakeLists.txt metis-5.2.1.mod/GKlib/CMakeLists.txt
+--- metis-5.2.1.orig/GKlib/CMakeLists.txt	2023-03-26 17:21:58.000000000 -0500
++++ metis-5.2.1.mod/GKlib/CMakeLists.txt	2023-06-06 23:52:41.147388825 -0500
+@@ -17,7 +17,7 @@ else(MSVC)
+ endif(MSVC)
+ 
+ add_library(GKlib ${GKlib_sources} ${win32_sources})
+-
++add_library(GKlib_shared SHARED ${GKlib_sources} ${win32_sources})
+ if(UNIX)
+   target_link_libraries(GKlib m)
+ endif(UNIX)
+@@ -26,6 +26,6 @@ include_directories("test")
+ add_subdirectory("test")
+ 
+ install(TARGETS GKlib
+-  ARCHIVE DESTINATION lib/${LINSTALL_PATH}
+-  LIBRARY DESTINATION lib/${LINSTALL_PATH})
+-install(FILES ${GKlib_includes} DESTINATION include/${HINSTALL_PATH})
++  ARCHIVE DESTINATION lib${LIB_SUFFIX}
++  LIBRARY DESTINATION lib${LIB_SUFFIX})
++install(FILES ${GKlib_includes} DESTINATION include/metis)
+diff -uNrp metis-5.2.1.orig/GKlib/Makefile metis-5.2.1.mod/GKlib/Makefile
+--- metis-5.2.1.orig/GKlib/Makefile	2023-03-26 17:21:58.000000000 -0500
++++ metis-5.2.1.mod/GKlib/Makefile	2023-06-06 23:54:12.668492310 -0500
+@@ -20,7 +20,7 @@ systype = $(shell uname -s)
+ BUILDDIR = build/$(systype)-$(cputype)
+ 
+ # Process configuration options.
+-CONFIG_FLAGS = -DCMAKE_VERBOSE_MAKEFILE=1
++CONFIG_FLAGS = -DCMAKE_VERBOSE_MAKEFILE=1 "$(CONFIG_FLAGS_EXTERN)"
+ ifneq ($(gdb), not-set)
+     CONFIG_FLAGS += -DGDB=$(gdb)
+ endif
+@@ -46,10 +46,10 @@ ifneq ($(pcre), not-set)
+     CONFIG_FLAGS += -DPCRE=$(pcre)
+ endif
+ ifneq ($(gkregex), not-set)
+-    CONFIG_FLAGS += -DGKREGEX=$(pcre)
++    CONFIG_FLAGS += -DGKREGEX=$(gkregex)
+ endif
+ ifneq ($(gkrand), not-set)
+-    CONFIG_FLAGS += -DGKRAND=$(pcre)
++    CONFIG_FLAGS += -DGKRAND=$(gkrand)
+ endif
+ ifneq ($(prefix), not-set)
+     CONFIG_FLAGS += -DCMAKE_INSTALL_PREFIX=$(prefix)
+diff -uNrp metis-5.2.1.orig/libmetis/CMakeLists.txt metis-5.2.1.mod/libmetis/CMakeLists.txt
+--- metis-5.2.1.orig/libmetis/CMakeLists.txt	2022-12-05 07:27:57.000000000 -0600
++++ metis-5.2.1.mod/libmetis/CMakeLists.txt	2023-06-06 23:51:22.170436590 -0500
+@@ -6,10 +6,11 @@ file(GLOB metis_sources *.c)
+ 
+ # Build libmetis.
+ add_library(metis ${METIS_LIBRARY_TYPE} ${metis_sources})
++set_target_properties(metis PROPERTIES SOVERSION 0)
+ 
+ if(METIS_INSTALL)
+   install(TARGETS metis
+-    LIBRARY DESTINATION lib
+-    RUNTIME DESTINATION lib
+-    ARCHIVE DESTINATION lib)
++    LIBRARY DESTINATION lib${LIB_SUFFIX}
++    RUNTIME DESTINATION lib${LIB_SUFFIX}
++    ARCHIVE DESTINATION lib${LIB_SUFFIX})
+ endif()
+diff -uNrp metis-5.2.1.orig/Makefile metis-5.2.1.mod/Makefile
+--- metis-5.2.1.orig/Makefile	2022-12-05 07:27:57.000000000 -0600
++++ metis-5.2.1.mod/Makefile	2023-06-06 23:54:12.669492322 -0500
+@@ -10,6 +10,10 @@ valgrind   = not-set
+ openmp     = not-set
+ shared     = not-set
+ cc         = not-set
++libsuffix  = not-set
++pcre       = not-set
++gkregex    = not-set
++gkrand     = not-set
+ prefix     = ~/local
+ gklib_path = ~/local
+ 
+@@ -22,10 +26,13 @@ IDXWIDTH  = "\#define IDXTYPEWIDTH 32"
+ REALWIDTH = "\#define REALTYPEWIDTH 32"
+ 
+ # Process configuration options.
+-CONFIG_FLAGS = -DCMAKE_VERBOSE_MAKEFILE=1
++CONFIG_FLAGS = -DCMAKE_VERBOSE_MAKEFILE=1 "$(CONFIG_FLAGS_EXTERN)"
+ ifneq ($(gklib_path), not-set)
+     CONFIG_FLAGS += -DGKLIB_PATH=$(abspath $(gklib_path))
+ endif
++ifneq ($(libsuffix), not-set)
++     CONFIG_FLAGS += -DLIB_SUFFIX=$(libsuffix)
++endif
+ ifneq ($(prefix), not-set)
+     CONFIG_FLAGS += -DCMAKE_INSTALL_PREFIX=$(prefix)
+ endif
+@@ -62,8 +69,17 @@ endif
+ ifneq ($(cc), not-set)
+     CONFIG_FLAGS += -DCMAKE_C_COMPILER=$(cc)
+ endif
++ifneq ($(pcre), not-set)
++    CONFIG_FLAGS += -DPCRE=$(pcre)
++endif
++ifneq ($(gkregex), not-set)
++    CONFIG_FLAGS += -DGKREGEX=$(gkregex)
++endif
++ifneq ($(gkrand), not-set)
++    CONFIG_FLAGS += -DGKRAND=$(gkrand)
++endif
+ 
+-VERNUM=5.1.0
++VERNUM=5.2.1
+ PKGNAME=metis-$(VERNUM)
+ 
+ define run-config
