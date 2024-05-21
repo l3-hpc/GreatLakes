@@ -1,0 +1,9 @@
+Lmod has detected the following error: Cannot load module "R/4.3.0". At least
+one of these module(s) must be loaded:
+   intel/21.1 intel/21.2 intel/21.3 intel/21.7 intel/21.5 intel/21.4
+
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    R/4.3.0          /usr/local/apps/modulefiles/Applications/R/4.3.0
+

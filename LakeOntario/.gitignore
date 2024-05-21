@@ -1,0 +1,10 @@
+data/
+shared/
+
+*.nc
+*.png
+*.mpg
+*.dat
+*.2dm
+
+# Ignoreing build files etc is handled by root gitignore

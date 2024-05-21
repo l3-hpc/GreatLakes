@@ -31,3 +31,7 @@
 *.out
 *.app
 
+*.pyc
+*.cfg
+vizualization/visitPy
+*/fvcom$
