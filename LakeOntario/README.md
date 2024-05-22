@@ -1,10 +1,10 @@
+Excuse the mess, FVCOM 4.4.2 doesn't allow data files to be held in higher level folders, so the inputs folder has to be the same level as the runs
 
 Lake Ontario TP modeling
-- shared - data sources to be shared between users
-- ccoffman - work done by Christian Coffman (March 2024 -  )
-	- Lake Ontario 2018
-		- FVCOM (5.0.2)
-		- linked TP biological model 
+- input- data sources to be shared between users
+- Lake Ontario 2018
+	- FVCOM (4.4.2)
+	- linked TP biological model 
 
 # README
 

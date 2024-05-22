@@ -2,7 +2,10 @@ library(ncdf4)
 library(sp)
 library(rgdal)
 
-nc <- nc_open(filename = "../runs/testRun/output/fvcom_0001.nc", write = TRUE)
+args <- commandArgs(trailingOnly = TRUE)
+
+
+nc <- nc_open(filename = args[1], write = TRUE)
 
 lat <- ncvar_get(nc, varid = "lat")
 lon <- ncvar_get(nc, varid = "lon")
@@ -33,5 +36,8 @@ ncvar_put(nc, varid = "y", df$Lat)
 
 ncvar_put(nc, varid = "xc", dfc$Lonc)
 ncvar_put(nc, varid = "yc", dfc$Latc)
+
+ncatt_put(nc, varid = 0, attname = "CoordinateSystem", attval = "Cartesian")
+ncatt_put(nc, varid = 0, attname = "CoordinateProjection", attval = "none")
 
 nc_close(nc)

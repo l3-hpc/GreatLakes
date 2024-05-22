@@ -1,3 +1,10 @@
+*.png
+*.mpeg
+*.mp4
+*_out$
+*_error$
+*fvcom$
+
 # Prerequisites
 *.d
 

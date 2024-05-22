@@ -8,7 +8,9 @@ args = Argv()
 # Vizualize temp, ice
 
 OpenDatabase(args[0], 0)
-# Save temp video
+
+
+# Save temperature video
 AddPlot("Pseudocolor", "temp")
 DrawPlots()
 
@@ -26,6 +28,6 @@ n_time_steps = TimeSliderGetNStates()
 # Loop over the time states saving an image for each state.
 for time_step in range(0,n_time_steps):
     TimeSliderSetState(time_step)
-    save_atts.fileName = "dbreak3d%04d.png" % time_step
+    save_atts.fileName = f"{args[1]}_{time_step}.png"
     SetSaveWindowAttributes(save_atts)
     SaveWindow()
